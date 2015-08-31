@@ -21,8 +21,8 @@
 
 ${get_css()}
 
-<div class="toolForm">
-    <div class="toolFormBody">
+<div class="report">
+    <div class="reportBody">
         <table id="formHeader">
             <tr>
                 <td>

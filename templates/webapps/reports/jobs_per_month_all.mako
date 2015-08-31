@@ -17,8 +17,8 @@
 ${get_css()}
 
 <!--jobs_per_month_all.mako-->
-<div class="toolForm">
-    <div class="toolFormBody">
+<div class="report">
+    <div class="reportBody">
         <table id="formHeader">
             <tr>
                 <td>

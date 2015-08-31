@@ -1152,6 +1152,7 @@ class SetupPerlEnvironment( Download, RecipeStep ):
                     # If set to a true value then MakeMaker's prompt function will always
                     # return the default without waiting for user input.
                     cmd = '''PERL_MM_USE_DEFAULT=1; export PERL_MM_USE_DEFAULT; '''
+                    cmd += 'HOME=%s; export HOME; ' % work_dir
                     cmd += 'export PERL5LIB=$INSTALL_DIR/lib/perl5:$PERL5LIB;'
                     cmd += 'export PATH=$INSTALL_DIR/bin:$PATH;'
                     if perl_package.find( '://' ) != -1:
@@ -1294,7 +1295,7 @@ class SetupREnvironment( Download, RecipeStep ):
                 for tarball_name in tarball_names:
                     # Use raw strings so that python won't automatically unescape the quotes before passing the command
                     # to subprocess.Popen.
-                    cmd = r'''PATH=$PATH:$R_HOME/bin; export PATH; R_LIBS=$INSTALL_DIR; export R_LIBS;
+                    cmd = r'''PATH=$PATH:$R_HOME/bin; export PATH; R_LIBS=$INSTALL_DIR:$R_LIBS; export R_LIBS;
                         Rscript -e "install.packages(c('%s'),lib='$INSTALL_DIR', repos=NULL, dependencies=FALSE)"''' % \
                         ( str( tarball_name ) )
                     cmd = install_environment.build_command( basic_util.evaluate_template( cmd, install_environment ) )

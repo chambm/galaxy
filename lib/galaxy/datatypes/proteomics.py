@@ -53,10 +53,6 @@ class Wiff(Binary):
 Binary.register_sniffable_binary_format("wiff", "wiff", Wiff )
 
 
-class IdpDB(Binary):
-    file_ext = "idpDB"
-
-
 class PepXmlReport(Tabular):
     """pepxml converted to tabular report"""
     file_ext = "tsv"
@@ -412,6 +408,30 @@ class MzSQlite( SQlite ):
     def sniff( self, filename, original_name="" ):
         if super( MzSQlite, self ).sniff( filename, original_name ):
             mz_table_names = ["DBSequence", "Modification", "Peaks", "Peptide", "PeptideEvidence", "Score", "SearchDatabase", "Source", "SpectraData", "Spectrum", "SpectrumIdentification"]
+            try:
+                conn = sqlite.connect( filename )
+                c = conn.cursor()
+                tables_query = "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
+                result = c.execute( tables_query ).fetchall()
+                result = map( lambda x: x[0], result )
+                for table_name in mz_table_names:
+                    if table_name not in result:
+                        return False
+                return True
+            except Exception, e:
+                log.warn( '%s, sniff Exception: %s', self, e )
+        return False
+
+class IdpDB( SQlite ):
+    """Class describing an IDPicker 3 idpDB (sqlite) database """
+    file_ext = "idpDB"
+
+    def set_meta( self, dataset, overwrite=True, **kwd ):
+        super( IdpDB, self ).set_meta( dataset, overwrite=overwrite, **kwd )
+
+    def sniff( self, filename, original_name="" ):
+        if super( IdpDB, self ).sniff( filename, original_name ):
+            mz_table_names = ["About", "Analysis", "AnalysisParameter", "PeptideSpectrumMatch", "Spectrum", "SpectrumSource"]
             try:
                 conn = sqlite.connect( filename )
                 c = conn.cursor()

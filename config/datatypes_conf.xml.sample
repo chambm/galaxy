@@ -160,6 +160,7 @@
     <datatype extension="mascotdat" type="galaxy.datatypes.proteomics:MascotDat" display_in_upload="false" />
     <datatype extension="mzid" type="galaxy.datatypes.proteomics:MzIdentML" mimetype="application/xml" display_in_upload="true" />
     <datatype extension="idxml" type="galaxy.datatypes.proteomics:IdXML" mimetype="application/xml" display_in_upload="true" />
+    <datatype extension="idpDB" type="galaxy.datatypes.proteomics:IdpDB" mimetype="application/octet-stream" display_in_upload="true" />
     <datatype extension="tandem" type="galaxy.datatypes.proteomics:TandemXML" mimetype="application/xml" display_in_upload="true" />
     <datatype extension="thermo.raw" type="galaxy.datatypes.proteomics:ThermoRAW" mimetype="application/octet-stream" display_in_upload="true" />
     <datatype extension="mzml" type="galaxy.datatypes.proteomics:MzML" mimetype="application/xml" display_in_upload="true"/>
@@ -176,7 +177,6 @@
     <datatype extension="splib_noindex" type="galaxy.datatypes.proteomics:SPLibNoIndex" display_in_upload="true" />
     <datatype extension="splib" type="galaxy.datatypes.proteomics:SPLib" display_in_upload="true" />
     <datatype extension="hlf" type="galaxy.datatypes.proteomics:XHunterAslFormat" mimetype="application/octet-stream" display_in_upload="true" />
-    <datatype extension="idpdb" type="galaxy.datatypes.proteomics:IdpDB" display_in_upload="true" />
     <datatype extension="sf3" type="galaxy.datatypes.proteomics:Sf3" display_in_upload="true" />
     <datatype extension="cps" type="galaxy.datatypes.binary:Binary" subclass="True" display_in_upload="true" />
     <datatype extension="ct" type="galaxy.datatypes.tabular:ConnectivityTable" display_in_upload="True"/>
@@ -426,6 +426,7 @@
     <sniffer type="galaxy.datatypes.binary:TwoBit"/>
     <sniffer type="galaxy.datatypes.binary:GeminiSQLite"/>
     <sniffer type="galaxy.datatypes.proteomics:MzSQlite"/>
+    <sniffer type="galaxy.datatypes.proteomics:IdpDB"/>
     <sniffer type="galaxy.datatypes.binary:SQlite"/>
     <sniffer type="galaxy.datatypes.binary:Bam"/>
     <sniffer type="galaxy.datatypes.binary:Sff"/>
